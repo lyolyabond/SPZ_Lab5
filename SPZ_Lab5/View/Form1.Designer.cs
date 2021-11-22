@@ -1,4 +1,6 @@
-﻿namespace SPZ_Lab5
+﻿using SPZ_Lab5.Model;
+
+namespace SPZ_Lab5
 {
     partial class Form1
     {
@@ -17,7 +19,8 @@
             {
                 components.Dispose();
             }
-            Model.Serialization.Serialize();
+            Serialization.Serialize(StoragePath, Storage.Students);
+            Serialization.Serialize(GroupListPath, Group.GroupNamesList);
             base.Dispose(disposing);
         }
 

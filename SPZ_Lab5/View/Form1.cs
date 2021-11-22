@@ -11,21 +11,25 @@ using SPZ_Lab5.Model;
 using SPZ_Lab5.View;
 using System.IO;
 
+
 namespace SPZ_Lab5
 {
     public partial class Form1 : Form
     {
         BindingSource binding;
         BindingSource bsCombobox;
+         static string StoragePath { get; } = "Storage.json";
+         static string GroupListPath { get; } = "GroupList.json";
 
         public Form1()
         {
-            
             InitializeComponent();
-            if(File.Exists(Serialization.Path))
+             
+            if(File.Exists(StoragePath) && File.Exists(GroupListPath))
             {
-                Storage.Students = Serialization.Deserialize();
-                File.Delete(Serialization.Path);
+                Storage.Students = Serialization.Deserialize(StoragePath, Storage.Students);
+                Group.GroupNamesList = Serialization.Deserialize(GroupListPath, Group.GroupNamesList);
+                File.Delete(StoragePath);
             }
             else Storage.Generate();
             binding = new BindingSource();

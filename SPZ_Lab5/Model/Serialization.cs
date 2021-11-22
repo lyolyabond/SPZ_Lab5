@@ -10,21 +10,21 @@ namespace SPZ_Lab5.Model
 {
     static class Serialization
     {
-        public static string Path { get; } = "file.json";
-        static public void Serialize()
+       
+        static public void Serialize<T>(string path, List<T> list)
         {
-            var jsonFormatter = new DataContractJsonSerializer(typeof(List<Student>));
-             using (FileStream file = new FileStream(Path, FileMode.Create))
+            var jsonFormatter = new DataContractJsonSerializer(typeof(List<T>));
+             using (FileStream file = new FileStream(path, FileMode.Create))
             {
-                jsonFormatter.WriteObject(file, Storage.Students);
+                jsonFormatter.WriteObject(file, list);
             }
         }
-        static public List<Student> Deserialize()
+        static public List<T> Deserialize<T>(string path, List<T> list)
         {
-            var jsonFormatter = new DataContractJsonSerializer(typeof(List<Student>));
-            using (FileStream file = new FileStream(Path, FileMode.Open))
+            var jsonFormatter = new DataContractJsonSerializer(typeof(List<T>));
+            using (FileStream file = new FileStream(path, FileMode.Open))
             {
-                return jsonFormatter.ReadObject(file) as List<Student>;
+                return jsonFormatter.ReadObject(file) as List<T>;
             }
         }
     }

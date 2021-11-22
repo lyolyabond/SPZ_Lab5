@@ -12,7 +12,8 @@ namespace SPZ_Lab5.Model
     {
         [DataMember]
         public string GroupNumber { get; set; }
-        public static List<string> GroupNamesList;
+        [DataMember]
+        public static List<string> GroupNamesList { get; set; }
         private static string[] groupNamesArray = new string[] {"ВПВПС", "КБИКС", "КИУКИ"};
         public Group(Random random)
         {
